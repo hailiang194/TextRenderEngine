@@ -1,0 +1,10 @@
+name: Feature Request
+description: Template for Feature request
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      description: Give me more details about what you want to have this project
