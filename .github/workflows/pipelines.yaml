@@ -17,7 +17,19 @@ jobs:
             - compiler: "clang"
               C: clang
               CXX: clang++
+            - build_shared: 0
+              build_type: "Static"
+            - build_shared: 1
+              build_type: "Shared"
+            
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout cde
+      - name: Checkout code
         uses: actions/checkout@v4
+      - name: Generate project with examples with ${{ matrix.build_type }} libraries
+        env:
+          CC: ${{ matrix.compiler.C }}
+          CXX: ${{ matrix.compiler.CXX }}
+        run: cmake -S ./ -B ./build -DBUILD_TEXT_RENDER_ENGINE_EXAMPLES=1 -DBUILD_SHARED_LIBS=${{ matrix.build_shared }} -G "Unix Makefiles"
+      - name: Build project
+        run : cmake --build build --config ${{ matrix.config }}
