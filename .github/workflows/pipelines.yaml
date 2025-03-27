@@ -1,0 +1,23 @@
+name: Pipeline
+run-name: ${{ github.ref }} on ${{ github.repository }} is being built and tested out Github actions
+on:
+  push:
+jobs:
+  Pipeline-Linux:
+    strategy:
+      fail-fast: false
+      matrix:
+          compiler: ["gcc", "clang"]
+          config: ["Debug", "Release"]
+          build_shared: [0, 1]
+          include: 
+            - compiler: "gcc"
+              C: gcc
+              CXX: g++
+            - compiler: "clang"
+              C: clang
+              CXX: clang++
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout cde
+        uses: actions/checkout@v4
