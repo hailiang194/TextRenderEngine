@@ -27,9 +27,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Generate project with examples with ${{ matrix.build_type }} libraries
-        env:
-          CC: ${{ matrix.compiler.C }}
-          CXX: ${{ matrix.compiler.CXX }}
-        run: cmake -S ./ -B ./build -DBUILD_TEXT_RENDER_ENGINE_EXAMPLES=1 -DBUILD_SHARED_LIBS=${{ matrix.build_shared }} -G "Unix Makefiles"
+        run: cmake -S ./ -B ./build -DBUILD_TEXT_RENDER_ENGINE_EXAMPLES=1 -DBUILD_SHARED_LIBS=${{ matrix.build_shared }} -DCMAKE_C_COMPILER=${{ matrix.compiler.C }} -DCMAKE_CXX_COMPILER=${{ matrix.compiler.CXX }} -G "Unix Makefiles"
       - name: Build project
         run : cmake --build build --config ${{ matrix.config }}
