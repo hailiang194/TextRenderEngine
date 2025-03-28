@@ -2,6 +2,8 @@
 
 Text Render Engine is a framework used for render Unicode
 
+[![Pipleline-main](https://github.com/hailiang194/TextRenderEngine/actions/workflows/pipelines.yaml/badge.svg?branch=main)](https://github.com/hailiang194/TextRenderEngine/actions/workflows/pipelines.yaml/badge.svg?branch=main)
+
 ## Libraries
 
 * freetype 2.13.3
@@ -14,6 +16,12 @@ Text Render Engine is a framework used for render Unicode
 * **CMake** version 3.5 or above
 * **MVSC**, **GCC** or **Clang**
 * **Emscripten SDK** for Web platform
+
+## CI/CD status
+| Branches | CI/CD Tools | Status |
+| ---      | ---         | ---    |
+| ```main```| Github Actions | [![Pipleline-main](https://github.com/hailiang194/TextRenderEngine/actions/workflows/pipelines.yaml/badge.svg?branch=main)](https://github.com/hailiang194/TextRenderEngine/actions/workflows/pipelines.yaml/badge.svg?branch=main) |
+| ```development```| Github Actions | [![Pipleline-development](https://github.com/hailiang194/TextRenderEngine/actions/workflows/pipelines.yaml/badge.svg?branch=development)](https://github.com/hailiang194/TextRenderEngine/actions/workflows/pipelines.yaml/badge.svg?branch=development) |
 
 ## Installation
 
