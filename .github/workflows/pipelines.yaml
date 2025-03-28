@@ -2,6 +2,10 @@ name: Pipeline
 run-name: ${{ github.ref }} on ${{ github.repository }} is being built and tested out Github actions
 on:
   push:
+    branches:
+      - 'main'
+      - 'development'
+  pull_request:
 jobs:
   Pipeline-Linux:
     strategy:
@@ -72,7 +76,7 @@ jobs:
           path: build/out
   Merge-Artifacts:
     runs-on: ubuntu-latest
-    needs: Pipeline-Linux
+    needs: [Pipeline-Linux, Pipleline-Windows]
     steps:
       - name: Merge Examples for Ubuntu
         uses: actions/upload-artifact/merge@v4
@@ -81,7 +85,7 @@ jobs:
           pattern: examples-ubuntu-*
           separate-directories: true
           delete-merged: true
-      - name: Merge Examples for Ubuntu
+      - name: Merge Examples for Windows
         uses: actions/upload-artifact/merge@v4
         with:
           name: Examples-Windows
