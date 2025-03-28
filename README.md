@@ -15,7 +15,6 @@ Text Render Engine is a framework used for render Unicode
 * **git**
 * **CMake** version 3.5 or above
 * **MVSC**, **GCC** or **Clang**
-* **Emscripten SDK** for Web platform
 
 ## CI/CD status
 | Branches | CI/CD Tools | Status |
