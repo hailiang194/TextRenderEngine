@@ -57,7 +57,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Generate project with examples with ${{ matrix.build_type }} libraries for Unix Makefiles
+      - name: Generate project with examples with ${{ matrix.build_type }} libraries for Ninja Multi-Config
         if: ${{ matrix.compiler != 'MSVC' }}
         run: cmake -S ./ -B ./build -DBUILD_TEXT_RENDER_ENGINE_EXAMPLES=1 -DBUILD_SHARED_LIBS=${{ matrix.build_shared }} -DCMAKE_C_COMPILER=${{ matrix.C }} -DCMAKE_CXX_COMPILER=${{ matrix.CXX }} -G "Ninja Multi-Config"
       - name: Generate project with examples with ${{ matrix.build_type }} libraries for Visual Studio
@@ -74,10 +74,17 @@ jobs:
     runs-on: ubuntu-latest
     needs: Pipeline-Linux
     steps:
-      - name: Merge Artifacts
+      - name: Merge Examples for Ubuntu
         uses: actions/upload-artifact/merge@v4
         with:
           name: Examples-Ubuntu
           pattern: examples-ubuntu-*
+          separate-directories: true
+          delete-merged: true
+      - name: Merge Examples for Ubuntu
+        uses: actions/upload-artifact/merge@v4
+        with:
+          name: Examples-Windows
+          pattern: examples-windows-*
           separate-directories: true
           delete-merged: true
